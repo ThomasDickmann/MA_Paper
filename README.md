@@ -35,7 +35,7 @@
     |
     ├── MATLAB_Models                    # Folder for all models in 'm' format 
     |                  
-    └── results.txt                      # Folder dor all result images
+    └── results.txt                      # Folder for all result images
 
 # Citation
 
