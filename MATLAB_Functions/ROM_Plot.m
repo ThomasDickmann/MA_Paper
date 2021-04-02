@@ -2,8 +2,8 @@ function [] = plotBR(alpha,beta,gamma)
 %plotBR plottet den Bewegungsraum des Zeigefingers basierend auf
 %uebergebenen Winkelintervallen
 %   Die Position der Gelenke und der Fingerspitze wird nach jedem
-%   Winkelinkrement geplottet, anschlieﬂend wird der Winkel inkrementell
-%   verstellt. Die Verh‰ltnisse sind vorgegeben 
+%   Winkelinkrement geplottet, anschlie√üend wird der Winkel inkrementell
+%   verstellt. Die Verh√§ltnisse sind vorgegeben 
 
 global ld
 global lm
@@ -43,7 +43,7 @@ hold on
 %title('Bewegungsraum Zeigefinger')
 %xlabel('mm')
 %ylabel('mm')
-%legend('Handr¸cken','MCP','PIP','DIP','Fingerspitze')
+%legend('Handr√ºcken','MCP','PIP','DIP','Fingerspitze')
 %axis equal
 %grid on
 end
