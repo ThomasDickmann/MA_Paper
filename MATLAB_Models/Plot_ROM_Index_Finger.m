@@ -46,7 +46,7 @@ hold on
 %Plotten aktiver Bewegungsraum
 hold on
 for i = -14:0.5:86.5
-   %plotBR(i,-7,0.6666*-7) -> Keine Hyperextension der Gelenke f¸r BR Ermittlung annehmen 
+   %plotBR(i,-7,0.6666*-7) -> Keine Hyperextension der Gelenke f√ºr BR Ermittlung annehmen 
    plotBR(i,0,0) 
 end
 
