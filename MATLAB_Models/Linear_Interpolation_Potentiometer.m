@@ -10,14 +10,14 @@ xB = [1385;1453;1521;1575;1624;1682;1739;1790;1850;1916;1980;2100;2132;2200;2264
 %Beispiel: Eingelesener ADC Wert
 x=1520;
 
-%Hochzählen des Index, bis Position im Array erreicht
+%HochzÃ¤hlen des Index, bis Position im Array erreicht
 i=2;
 %Begrenzen auf Messintervall
 if x > xB(length(xB))   %Obere Schranke
     y = yB(length(yB))
 elseif x<xB(1)          %Untere Schranke
      y = yB(1)
-else                    %Hochzählen in Messreihe
+else                    %HochzÃ¤hlen in Messreihe
     while (x > xB(i))
     i=i+1;
     end 
