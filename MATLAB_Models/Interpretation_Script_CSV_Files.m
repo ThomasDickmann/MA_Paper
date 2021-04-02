@@ -3,7 +3,7 @@ clc
 
 %% Parametrierung des Modells (aus Input_Output_Skript)
 
-% Parameter für kinematisches Modell
+% Parameter fÃ¼r kinematisches Modell
 %Gliedlaengen Kinematik (s.Skizze)
 global l_1 
 global l_2 
@@ -52,7 +52,7 @@ h_PP = 8;
 global h_AP
 h_AP = 5.5;
 
-%Konstante, durch Finger definierte kin. Groeßen aus geg. Parametern berechnen 
+%Konstante, durch Finger definierte kin. GroeÃŸen aus geg. Parametern berechnen 
 %Uebergeben von Abstand d von MCP Phalanxmodul (s.Skizze)
 global l_G2
 global l_G3
@@ -88,7 +88,7 @@ psi_1 = ((180-35)/360)*2*pi;
 global B
 B=[A(1)+l_5*cos(psi_1);A(2)+l_5*sin(psi_1)];
 
-% Konstante Groeßen der Aktorkinematik (s. Skizze Aktor)
+% Konstante GroeÃŸen der Aktorkinematik (s. Skizze Aktor)
 %Parametrisch durch Aktorlagerposition relativ zu Gelenk B definiert)
 global akt_x
 global akt_y
@@ -98,7 +98,7 @@ global alpha_const
 global l_Akt
 global d_b
 
-l_Akt = 102 + 37.3; %Bezeichnet die Länge von Aktorverbund in minimal ausgefahrener Länge (Aktorlänge plus Länge Kraftsensorverbund)
+l_Akt = 102 + 37.3; %Bezeichnet die LÃ¤nge von Aktorverbund in minimal ausgefahrener LÃ¤nge (AktorlÃ¤nge plus LÃ¤nge Kraftsensorverbund)
 akt_x = -160.761; %Aktorgelenkmountposition hinten relativ zu Gelenk B
 akt_y = -9.845; %Aktorgelenkmountposition hinten relativ zu Gelenk B 
 theta = (pi/180)*35; %Winkel zwischen kurzer und langer Schwinge in l_1
@@ -108,10 +108,10 @@ d_b = sqrt((0-akt_x)^2+(0-akt_y)^2); %Abstand B und Aktoraufhaengung
 %Konstanter Winkel zwischen x-Achse und Verbindungsgraden Gelenk B und Aktoraufhaengung
 alpha_const = pi + getAngle(0,0,akt_x,akt_y);
 
-% Parameter für dynamisches Modell
+% Parameter fÃ¼r dynamisches Modell
 
 %Laengen bis zu den jeweiligen Schwerpunkten der Finger (s. Skizze) -->
-%Später in Paramterteil definieren!
+%SpÃ¤ter in Paramterteil definieren!
 global l_C1
 global l_C2
 global l_C3
@@ -166,8 +166,8 @@ yK = [5;10;15;20;25;30;35;40;45;50;55;60;62.5;65;70;75;80;85];
 xK = [1390;1443;1496;1529;1594;1634;1689;1743;1811;1874;1930;1998;2136;2175;2242;2295;2367;2439];
 
 
-%Öffnen einer Figure für Plot -> Nacheinander Loopen für verschiedene Plots
-%Positionen MCP(0,0), PIP, DIP, FS über Bewegungsverlauf 
+%Ã–ffnen einer Figure fÃ¼r Plot -> Nacheinander Loopen fÃ¼r verschiedene Plots
+%Positionen MCP(0,0), PIP, DIP, FS Ã¼ber Bewegungsverlauf 
 %Subplot 3x3
 %Oben: Jeweils Gelenkwinkel MCP PIP DIP
 %Unten: Jeweils Gelenkmomente MMCP MPIP MDIP
@@ -183,8 +183,8 @@ M_PIP = zeros(length(Zeit_ms),1);
 
 P_FS = zeros(length(Zeit_ms),2);
 
-%% Loopen über alle Wertetupel und plotten des Ergebnisses 
-%Übergeben der Werte Schrittweise an CSV Interpretation 
+%% Loopen Ã¼ber alle Wertetupel und plotten des Ergebnisses 
+%Ãœbergeben der Werte Schrittweise an CSV Interpretation 
 
 for i=1:1:length(Zeit_ms)
 
@@ -202,7 +202,7 @@ for i=1:1:length(Zeit_ms)
     force_F = 0.0033*forceB(i) - 2.2402;    %Sensor B
     force_B = 0.0036*forceA(i) - 2.0806;    %Sensor A
 
-    % Auswertung der Sensordaten über Interpretationsfunktion
+    % Auswertung der Sensordaten Ã¼ber Interpretationsfunktion
     [FS_r, PIP_r,DIP_r, phid_MCP, phid_PIP, phid_DIP, T_MCP, T_PIP, T_DIP] = CSV_Interpretation(phi_B, phi_A, phi_K, force_F, force_B);
 
       
@@ -226,7 +226,7 @@ plot(100,100,'ro','MarkerFaceColor','r','MarkerSize',4)
 
 ylabel('Abstand zu MCP Gelenk [mm]')
 xlabel('Abstand zu MCP Gelenk [mm]')
-title('Vergleich der Bewegungsräume')
+title('Vergleich der BewegungsrÃ¤ume')
 pFS = plot(FS_r(1),FS_r(2),'ro','MarkerFaceColor','r','MarkerSize',5,'DisplayName', 'Exoskelett BR')
 legend([p1 p2 pFS],{'Aktiver BR','Funktioneller BR', 'Exoskelett BR'})
 
