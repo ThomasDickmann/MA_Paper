@@ -1,7 +1,7 @@
 clc
 %Skript zur Auswertung der Positionen und Kraefte des Exoskelettsystems
 
-%% Parameter für kinematisches Modell
+%% Parameter fÃ¼r kinematisches Modell
 %Gliedlaengen Kinematik (s.Skizze)
 global l_1 
 global l_2 
@@ -50,7 +50,7 @@ h_PP = 8;
 global h_AP
 h_AP = 5.5;
 
-%Konstante, durch Finger definierte kin. Groeßen aus geg. Parametern berechnen 
+%Konstante, durch Finger definierte kin. GroeÃŸen aus geg. Parametern berechnen 
 %Uebergeben von Abstand d von MCP Phalanxmodul (s.Skizze)
 global l_G2
 global l_G3
@@ -86,7 +86,7 @@ psi_1 = ((180-35)/360)*2*pi;
 global B
 B=[A(1)+l_5*cos(psi_1);A(2)+l_5*sin(psi_1)];
 
-%% Konstante Groeßen der Aktorkinematik (s. Skizze Aktor)
+%% Konstante GroeÃŸen der Aktorkinematik (s. Skizze Aktor)
 %Parametrisch durch Aktorlagerposition relativ zu Gelenk B definiert)
 global akt_x
 global akt_y
@@ -96,7 +96,7 @@ global alpha_const
 global l_Akt
 global d_b
 
-l_Akt = 102 + 37.3; %Bezeichnet die Länge von Aktorverbund in minimal ausgefahrener Länge (Aktorlänge plus Länge Kraftsensorverbund)
+l_Akt = 102 + 37.3; %Bezeichnet die LÃ¤nge von Aktorverbund in minimal ausgefahrener LÃ¤nge (AktorlÃ¤nge plus LÃ¤nge Kraftsensorverbund)
 akt_x = -160.761; %Aktorgelenkmountposition hinten relativ zu Gelenk B
 akt_y = -9.845; %Aktorgelenkmountposition hinten relativ zu Gelenk B 
 theta = (pi/180)*35; %Winkel zwischen kurzer und langer Schwinge in l_1
@@ -106,10 +106,10 @@ d_b = sqrt((0-akt_x)^2+(0-akt_y)^2); %Abstand B und Aktoraufhaengung
 %Konstanter Winkel zwischen x-Achse und Verbindungsgraden Gelenk B und Aktoraufhaengung
 alpha_const = pi + getAngle(0,0,akt_x,akt_y);
 
-%% Parameter für dynamisches Modell
+%% Parameter fÃ¼r dynamisches Modell
 
 %Laengen bis zu den jeweiligen Schwerpunkten der Finger (s. Skizze) -->
-%Später in Paramterteil definieren!
+%SpÃ¤ter in Paramterteil definieren!
 global l_C1
 global l_C2
 global l_C3
@@ -149,18 +149,18 @@ m1= 0.0;
 m2= 0.0;
 m3= 0.0;
 
-%% Ab hier: Auswertung nach Einlesen der Sensorwerte für Position und Kraft
+%% Ab hier: Auswertung nach Einlesen der Sensorwerte fÃ¼r Position und Kraft
 
 %Encoderwinkel - Werden durch Array aus Messdaten bereitgestellt
 phi_B=(130/360)*2*pi; %Winkel an Antriebsglied 
 % phi_B kann bei idealem Tracking der Positionsregelung mit getActuationAngle berechnet werden, 
-%sodass kein Encoder nötig ist. Mit Encoderwinkel und Kraftmessungswert
-%können jedoch stets genaue Wertepaare von Winkel und Kraft berechnet
+%sodass kein Encoder nÃ¶tig ist. Mit Encoderwinkel und Kraftmessungswert
+%kÃ¶nnen jedoch stets genaue Wertepaare von Winkel und Kraft berechnet
 %werden. 
 phi_A=(52.21/360)*2*pi; %zweiter Winkel an Handruecken
 phi_K=(80/360)*2*pi; %Winkel an Verbindung med. bez. auf x-Achse med.
 
-%Sensorwert für momentane Aktorkraft
+%Sensorwert fÃ¼r momentane Aktorkraft
 F_Aktor = 10;
 
 %% Lageberechnung nach Sensorinput [Check]
@@ -215,32 +215,32 @@ phi_10=getAngle(H(1),H(2),J(1),J(2));
 phi_11=getAngle(K(1),K(2),J(1),J(2));
 phi_12=getAngle(J(1),J(2),L(1),L(2));
 
-%% Funktion: Berechnen der externen Kräfte auf Finger aus Stabwinkeln und Kraeftegleichgewichten [Check]
+%% Funktion: Berechnen der externen KrÃ¤fte auf Finger aus Stabwinkeln und Kraeftegleichgewichten [Check]
 %Uebergabe von Kraftmesswert und aktuellem Schwingenwinkel
 [F_ext_x,F_ext_y]=getActuationForce(F_Aktor, phi_B);
 
 %[Modell mit Simscape validiert ab Antriebsmoment M_B]. Kontaktkraefte in KS der Phalangen und
-%Fingergelenksmomente stimmen mit physikalischem Modell überein  
+%Fingergelenksmomente stimmen mit physikalischem Modell Ã¼berein  
 
 %Berechnung der Lagerreaktionen Kinematikgelenken in WS (Simplify Loesungen aus linsolve[A,B]in Kraftfluss_Kinematik.m)
 [F_1x,F_1y,F_2x,F_2y,F_3x,F_3y,F_4x,F_4y,F_5x,F_5y,F_6x,F_6y] = getExtForces(F_ext_x, F_ext_y);
 
 %Drehen der Kraefte in jew. eigenes Koerpersystem zur Visualisierung 
 [F_PD_x,F_PD_y,F_PM_x,F_PM_y,F1_PP_x,F1_PP_y,F2_PP_x,F2_PP_y]=getPhalanxForces(alpha,beta,gamma,F_3x,F_3y,F_4x,F_4y,F_5x,F_5y,F_6x,F_6y);
-%Drehmatrizen aus NE Skript (Rotationsmatrizen für alle Koeper)
+%Drehmatrizen aus NE Skript (Rotationsmatrizen fÃ¼r alle Koeper)
 
 %Plotten der einzelnen Phalanxkraefte in Koerpersystemen
 %figure
 %forces=[F_PD_x,F_PD_y,F_PM_x,F_PM_y,F1_PP_x,F1_PP_y,F2_PP_x,F2_PP_y];
 %bar(forces)
-%TODO: Prüfen der Werte mit KS in Simscape, X-Achse der Grafik beschriften 
+%TODO: PrÃ¼fen der Werte mit KS in Simscape, X-Achse der Grafik beschriften 
 
 %% Dynamisches Modell des Fingers, quasistatischer Zustand
 
 %Berechnen der Fingermomente aus Gelenkwinkeln und externen Kraeften auf
 %Fingerglieder 
 
-%Testweise überschreiben von Kraeften und Winkeln zum Absichern der
+%Testweise Ã¼berschreiben von Kraeften und Winkeln zum Absichern der
 %Funktion [Check]
 
 [M_MCP, M_PIP, M_DIP] = getJointTorques(alpha,beta,gamma,F_3x,F_3y,F_4x,F_4y,F_5x,F_5y,F_6x,F_6y)
