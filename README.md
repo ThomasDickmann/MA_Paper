@@ -34,8 +34,19 @@
     │   └── plotKinConfig.m              # plots the current kinematic position 
     |
     ├── MATLAB_Models                    # Folder for all models in 'm' format 
-    |                  
-    └── results.txt                      # Folder for all result images
+    |   |
+    |   ├── Calibration_curves_potentiometer.m        # contains the calibration data of the position sensors
+    |   ├── Force_Equilibrium_SoE.m                   # creates a linear system of equations from the equilibrium conditions around each joint
+    |   ├── Force_Sensor_Drift_Hysteresis_Test.m      # interpretation of force sensor data
+    |   ├── Integrated_Force_Sensor_test.m            # simplified force sensor calibration for recalibrating the integrated sensors
+    |   ├── Interpretation_Script_CSV_Files.m         # script which utilizes the CSV_Interpretation.m function to create arrays with interpreted data
+    |   ├── Linear_Interpolation_Potentiometer.m      # linear interpolation concept used for position sensor calibration  
+    |   ├── Newton_Euler_generation_script.m          # creates the full NE model of the finger using the symbolic toolbox
+    |   ├── Plot_ROM_Index_Finger.m                   # plots the range of motion of the index finger based on joint angle data arrays
+    |   ├── Plot_interpreted_CSV_values.m             # plots the interpreted .csv test data
+    |   ├── Single_sensor_dataset_interpretation.m    # exemplary interpretation of a singe test data set (3 joint angles, 2 forces)
+    |   
+    └── results.txt                      # Folder for all result images, test data and CAD files for printing (.stl)
 
 # Citation
 
