@@ -29,11 +29,11 @@ bool openFile_write(const char *filename)
 
 //Laufzeit und Loggingfrequenz einstellen ////////////////////////////
 //Setzen von fester Loopedauer über Timer im Hintergrund, sodass der Controller parallel arbeiten kann
-unsigned int loopTime = 100; //Wert für gewünschtes Loopintervall in Millisekunden
+unsigned int loopTime = 10; //Wert für gewünschtes Loopintervall in Millisekunden
 unsigned long breakTime; //Zeitstempel zu Anfang des Loops -> Ablegen des Zeitpunkts für Loopende
 
 //Counter für gewünschte Anzahl an Loopdurchläufen 
-int totalRuns = 60000/loopTime; //(60 Sekunden pro Bewegung)
+int totalRuns = 25000/loopTime; //(25 Sekunden pro Bewegung)
 int t = 0; //Zählervariable für Loopdurchläufe
 int k = 0; //Zählervariable für Funktion Aktortrajektorie
 ///////////////////////////////////////////////////////////////////////
@@ -263,68 +263,7 @@ void setup() {
   //Zeitstempel: Aktueller Loopdurchlauf (Startet bei 0)
   unsigned long ms = millis() - setupTime; 
 
- 
-  //Pausen für Kraftsensortest einbauen (Beladezeiten)
-   if (t == 50){
-      //Begin Beladen nach 5s
-     // Serial.println(" Pause Beladen  "); 
-     delay(t_del); 
-     }
-   else if (t == 150){
-    //Serial.print(" Pause Beladen "); 
-    delay(t_del);
-    }
-   else if (t == 250){
-    delay(t_del);
-    //Serial.print(" Pause Beladen "); 
-    } 
-   else if (t == 350){
-    delay(t_del);
-   //Serial.print(" Pause Beladen "); 
-    }
-   else if (t == 450){
-    delay(t_del);
-    //Serial.print(" Pause Beladen "); 
-    }
-   else if (t == 550){
-    delay(t_del);
-    //Serial.print(" Pause Beladen "); 
-    }
-   else if (t == 650){
-    delay(t_del);
-    //Serial.print(" Pause Beladen "); 
-    }
-  else{
-  }
-
-  if(t >=50 && t< 150){
-    ms=ms-t_del;
-  }
-  else if (t >=150 && t< 250){
-    ms=ms-(2*t_del);
-  }
-  else if (t >=250 && t< 350){
-    ms=ms-(3*t_del);
-  }
-  else if (t >=350 && t< 450){
-    ms=ms-(4*t_del);
-  }
-  else if (t >=450 && t< 550){
-    ms=ms-(5*t_del);
-  }
-  else if (t >=550 && t< 650){
-    ms=ms-(6*t_del);
-  }
-  else{
-    //do nothing
-  }
-
-  Serial.print(" "); 
-  Serial.print(t);
-  Serial.print(" "); 
-  Serial.print(ms);
-  
-  //Wert für Endzeitpunkt von aktuellem Loop erzeugen
+   //Wert für Endzeitpunkt von aktuellem Loop erzeugen
   breakTime = millis() + loopTime; 
   //Serial.print("Loop startet: ");
 
@@ -384,11 +323,11 @@ void setup() {
   float M_akt = getActuationTorque(phi_B,F_akt)/1000; //Nm aus Nmm 
   //Ueberschreiben mit fixem Wert fuer Demo an Hand (keine Positionssensorik verbaut)
 
-  /*
+  
   //float M_akt = 10; //Regler umgehen, immer Vorwärts
   Serial.print("M_akt = ");
   Serial.println(M_akt);
-  */
+  
   
   //DEMO KRAFTREGELUNG: Dummywert nutzen (Encoder)
   //M_akt = analogRead(sensorpin); //Kraftwert einlesen 
