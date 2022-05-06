@@ -53,5 +53,5 @@
 If you use this project in any of your work, please cite:
 
 ```
-tbd.
+Dickmann  T, Wilhelm NJ, Glowalla  C, Haddadin  S, van der Smagt  P and Burgkart  R (2021) An Adaptive Mechatronic Exoskeleton for Force-Controlled Finger Rehabilitation. Front. Robot. AI 8:716451. doi: 10.3389/frobt.2021.716451
 ```
